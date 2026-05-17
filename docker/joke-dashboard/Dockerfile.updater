@@ -1,0 +1,14 @@
+FROM ubuntu:24.04
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends curl ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY change-user updater .
+RUN chmod +x updater && chmod +x change-user
+
+RUN groupadd -g 1001 appgroup && useradd -m -u 1001 -g appgroup appuser
+
+CMD ["./updater & su - appuser"]
+

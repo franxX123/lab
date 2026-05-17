@@ -1,0 +1,9 @@
+# .dockerignore
+
+Dockerfile
+.dockerignore
+.git/
+*.log
+*.swp
+*~
+.env
